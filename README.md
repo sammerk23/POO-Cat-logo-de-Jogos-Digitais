@@ -44,9 +44,8 @@ Implementamos a classe GerenciadorJogos seguindo o padrão Singleton (sobrescrev
 - Objetivo: Garantir que exista apenas uma instância controlando as configurações globais do sistema, como o limite de jogos simultâneos ("jogando") e a meta anual.
 - Isso centraliza o carregamento e salvamento das configurações do arquivo settings.json.
 
-### Associação e Composição (colecoes.py e usuario.py)
+### Associação e Composição (colecoes.py)
 - Coleção: A classe Colecao atua como um container que gerencia uma lista de objetos Jogo. Ela abstrai a complexidade de listas do Python, oferecendo métodos de alto nível como buscar_por_status ou listar_ordenado.
-- Relacionamento: Um Usuario possui um dicionário de coleções, demonstrando uma relação de composição onde o usuário gerencia múltiplos grupos de jogos (ex: "Favoritos", "Backlog").
 
 ### Persistência de Dados (dados.py)
 A persistência foi separada da lógica de negócio. O módulo dados.py é responsável por converter os objetos em JSON e vice-versa.
