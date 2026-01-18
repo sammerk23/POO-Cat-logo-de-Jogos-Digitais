@@ -17,10 +17,6 @@ Projeto da cadeira de POO do curso de ADS da UFCA.
 - Atributos: nome, listaJogos
 - Métodos: __str__, __len__, adicionarJogo, removerJogo, listarJogos
 
-### Usuário
-- Atributos: nome, colecoes, 
-- Métodos: __str__, adicionarJogoBiblioteca, removerJogoBiblioteca, adicionarColecao, encontrarJogo
-
 ## Rodando o código
 
 1. Para rodar o código é necessário a instalação do pytest, para isso basta executar o comando "**pip install pytest**" no terminal.
