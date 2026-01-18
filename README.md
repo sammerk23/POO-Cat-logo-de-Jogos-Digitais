@@ -23,4 +23,4 @@ Projeto da cadeira de POO do curso de ADS da UFCA.
 
 ## Rodando o código
 
-- Para rodar o código é necessário a instalação do pytest, para isso basta executar o comando *pip install pytest* no terminal.
+- Para rodar o código é necessário a instalação do pytest, para isso basta executar o comando "*pip install pytest*" no terminal.
