@@ -1,42 +1,25 @@
 from jogo import Jogo
 
 class Colecao:
-    """Classe para gerenciar uma coleção de jogos"""
-    
-    def __init__(self):
+    def __init__(self, nome="Minha coleção"):
+        self.nome = nome
         self.jogos = []
     
     def adicionar(self, jogo):
-        """
-        Adiciona um jogo à coleção, verificando duplicatas.
+        # Verifica se já existe EXATAMENTE o mesmo jogo (mesmo título e plataforma)
+        for j in self.jogos:
+            if j.titulo.lower() == jogo.titulo.lower() and \
+               j.plataforma.lower() == jogo.plataforma.lower():
+                print(f"⚠️ Já existe: {jogo.titulo} ({jogo.plataforma})")
+                return False
         
-        Args:
-            jogo: Objeto Jogo a ser adicionado
-            
-        Returns:
-            bool: True se adicionado, False se já existe
-        """
-        # Verificar duplicata (título + plataforma)
-        if not self.buscar_por_titulo(jogo.titulo) or \
-           (self.buscar_por_titulo(jogo.titulo) and 
-            self.buscar_por_titulo(jogo.titulo).plataforma != jogo.plataforma):
-            self.jogos.append(jogo)
-            print(f"✅ Adicionado: {jogo.titulo} ({jogo.plataforma})")
-            return True
-        print(f"⚠️ Já existe: {jogo.titulo} ({jogo.plataforma})")
-        return False
+        # Se percorreu tudo e não encontrou igual, adiciona
+        self.jogos.append(jogo)
+        print(f"✅ Adicionado: {jogo.titulo} ({jogo.plataforma})")
+        return True
     
     def remover(self, titulo, plataforma=None):
-        """
-        Remove um jogo da coleção pelo título (e plataforma se especificada).
-        
-        Args:
-            titulo: Título do jogo a remover
-            plataforma: Plataforma opcional para remover específico
-            
-        Returns:
-            bool: True se removido, False se não encontrado
-        """
+        # Remove um jogo da coleção pelo título e plataforma (opcional)
         for i, j in enumerate(self.jogos):
             if j.titulo.lower() == titulo.lower():
                 if plataforma is None or j.plataforma.lower() == plataforma.lower():
@@ -47,53 +30,29 @@ class Colecao:
         return False
     
     def buscar_por_titulo(self, titulo):
-        """
-        Busca um jogo pela título.
-        
-        Args:
-            titulo: Título do jogo a buscar
-            
-        Returns:
-            Jogo: Objeto do jogo encontrado ou None
-        """
+        # Busca um jogo pelo título exato
         for j in self.jogos:
             if j.titulo.lower() == titulo.lower():
                 return j
         return None
     
     def buscar_por_status(self, status):
-        """
-        Busca todos os jogos com um status específico.
-        
-        Args:
-            status: Status a buscar (ex: "jogando", "finalizado")
-            
-        Returns:
-            list: Lista de jogos com o status especificado
-        """
+        # Busca todos os jogos com um status específico
         return [j for j in self.jogos if j.status.lower() == status.lower()]
     
     def buscar_por_genero(self, genero):
-        """
-        Busca todos os jogos de um gênero específico.
-        
-        Args:
-            genero: Gênero a buscar
-            
-        Returns:
-            list: Lista de jogos do gênero especificado
-        """
+        # Busca todos os jogos de um gênero específico
         return [j for j in self.jogos if j.genero.lower() == genero.lower()]
     
     def listar(self):
-        """Lista todos os jogos da coleção"""
+        # Lista todos os jogos da coleção
         if not self.jogos:
             print("📭 Nenhum jogo na coleção")
             return
         
-        print("\n" + "="*70)
+        print("\n" + "="*40)
         print("📚 COLEÇÃO DE JOGOS")
-        print("="*70)
+        print("="*40)
         for i, j in enumerate(self.jogos, 1):
             print(f"{i}. {j.titulo}")
             print(f"   Plataforma: {j.plataforma}")
@@ -101,28 +60,86 @@ class Colecao:
             print(f"   Horas: {j.horasJogadas}h | Nota: {j.nota}")
             print()
         print(f"Total: {len(self.jogos)} jogo(s)")
-        print("="*70 + "\n")
+        print("="*40 + "\n")
     
     def listar_por_status(self, status):
-        """Lista jogos filtrados por status"""
+        # Lista jogos filtrados por status
         jogos_filtrados = self.buscar_por_status(status)
         
         if not jogos_filtrados:
             print(f"📭 Nenhum jogo com status '{status}'")
             return
         
-        print(f"\n{'='*70}")
+        print(f"\n{'='*40}")
         print(f"📚 JOGOS COM STATUS: {status.upper()}")
-        print(f"{'='*70}")
+        print(f"{'='*40}")
         for i, j in enumerate(jogos_filtrados, 1):
             print(f"{i}. {j.titulo} ({j.plataforma}) - {j.horasJogadas}h")
         print(f"Total: {len(jogos_filtrados)} jogo(s)")
-        print("="*70 + "\n")
+        print("="*40 + "\n")
     
     def obter_quantidade(self):
-        """Retorna a quantidade de jogos na coleção"""
+        # Retorna a quantidade total de jogos na coleção
         return len(self.jogos)
     
     def obter_quantidade_por_status(self, status):
-        """Retorna a quantidade de jogos com um status específico"""
+        # Retorna a quantidade de jogos com um status específico
         return len(self.buscar_por_status(status))
+    
+    def buscar_por_parte_titulo(self, termo):
+        # Busca jogos cujo título contenha parte do titulo
+        termo = termo.lower()
+        resultados = [j for j in self.jogos if termo in j.titulo.lower()]
+        
+        if not resultados:
+            print(f"📭 Nenhum jogo encontrado com o termo '{termo}'")
+            return []
+        
+        return resultados
+
+    def filtrar_jogos_por(self, genero=None, plataforma=None, nota_minima=None):
+        # Filtra jogos por gênero, plataforma ou nota mínima
+        filtrados = self.jogos
+
+        if genero:
+            filtrados = [j for j in filtrados if j.genero.lower() == genero.lower()]
+        
+        if plataforma:
+            filtrados = [j for j in filtrados if getattr(j, 'plataforma', '').lower() == plataforma.lower()]
+        
+        if nota_minima is not None:
+            filtrados = [j for j in filtrados if j.nota >= nota_minima]
+
+        return filtrados
+
+    def listar_ordenado(self, criterio='titulo', reverso=False):
+        # Requisito: Ordenar lista por tempo jogado, avaliação ou ano.
+
+        if not self.jogos:
+            print("📭 Coleção vazia.")
+            return
+
+        # Dicionário de funções lambda para ordenação dinâmica
+        chaves_ordenacao = {
+            'titulo': lambda j: j.titulo,
+            'horas': lambda j: j.horasJogadas,
+            'nota': lambda j: j.nota,
+            'ano': lambda j: j.anoLancamento
+        }
+
+        if criterio not in chaves_ordenacao:
+            print("Critério de ordenação inválido.")
+            return
+
+        # Ordena a lista com base no critério escolhido (titulo, horas, nota, ano)
+        lista_ordenada = sorted(self.jogos, key=chaves_ordenacao[criterio], reverse=reverso)
+
+        print(f"\n{'='*40}")
+        print(f" LISTA ORDENADA POR: {criterio.upper()}")
+        print(f"{'='*40}")
+        
+        for i, j in enumerate(lista_ordenada, 1):
+            val = getattr(j, criterio, '') # Pega o valor usado para ordenar (apenas para display)
+            if criterio == 'horas': val = f"{j.horasJogadas}h"
+            
+            print(f"{i}. {j.titulo} - {val}")

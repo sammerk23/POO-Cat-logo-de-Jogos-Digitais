@@ -1,26 +1,54 @@
-[
-    {
-        "titulo": "Cyberpunk 2077",
-        "nota": 9,
-        "horasJogadas": 50,
-        "status": "finalizado",
-        "genero": "RPG",
-        "dataInicio": "2024-01-01",
-        "dataTermino": "2024-02-01",
-        "anoLancamento": 2020,
-        "tipo_classe": "JogoPc",
-        "plataforma": "Computador"
-    },
-    {
-        "titulo": "Candy Crush",
-        "nota": 5,
-        "horasJogadas": 2,
-        "status": "jogando",
-        "genero": "Puzzle",
-        "dataInicio": "2024-03-01",
-        "dataTermino": "",
-        "anoLancamento": 2012,
-        "tipo_classe": "JogoMobile",
-        "plataforma": "Mobile"
-    }
-]
+{
+    "Minha coleção": [
+        {
+            "titulo": "Cyberpunk 2077",
+            "nota": 0,
+            "horasJogadas": 0,
+            "status": "não iniciado",
+            "genero": "RPG, Mundo aberto, Ação",
+            "dataInicio": "",
+            "dataTermino": "",
+            "anoLancamento": 2020,
+            "tipo_classe": "JogoPc",
+            "plataforma": "Computador"
+        },
+        {
+            "titulo": "Dying Light",
+            "nota": 0,
+            "horasJogadas": 0,
+            "status": "não iniciado",
+            "genero": "Zumbi, RPG, Ação, Mundo Aberto",
+            "dataInicio": "",
+            "dataTermino": "",
+            "anoLancamento": 2015,
+            "tipo_classe": "JogoPc",
+            "plataforma": "Computador"
+        }
+    ],
+    "Jogar em 2026": [
+        {
+            "titulo": "Far cry 3",
+            "nota": 0,
+            "horasJogadas": 0,
+            "status": "não iniciado",
+            "genero": "Ação, Mundo aberto, tiro",
+            "dataInicio": "",
+            "dataTermino": "",
+            "anoLancamento": 2012,
+            "tipo_classe": "JogoPc",
+            "plataforma": "Computador"
+        },
+        {
+            "titulo": "far cry 4",
+            "nota": 0,
+            "horasJogadas": 0,
+            "status": "não iniciado",
+            "genero": "Mundo aberto, Ação, Tiro",
+            "dataInicio": "",
+            "dataTermino": "",
+            "anoLancamento": 2014,
+            "tipo_classe": "JogoPc",
+            "plataforma": "Computador"
+        }
+    ]
+}

@@ -1,8 +1,6 @@
 from typing import List, Dict
 from jogo import Jogo
 from config import obter_meta_anual
-import json
-import os
 
 def calcular_total_horas(lista_jogos: List['Jogo']) -> float:
     # Calcula o total de horas jogadas somando as horas de cada jogo na lista
@@ -49,7 +47,6 @@ def listar_top_jogos(lista_jogos: List['Jogo'], top_n=5) -> List['Jogo']:
     return lista_ordenada[:top_n]
 
 def verificar_meta_anual(lista_jogos: List['Jogo']):
-    """Verifica se a meta anual de jogos finalizados foi atingida e emite aviso se não"""
     meta = obter_meta_anual()
     finalizados = [j for j in lista_jogos if j.status.lower() == "finalizado"]
     qtd_finalizados = len(finalizados)
