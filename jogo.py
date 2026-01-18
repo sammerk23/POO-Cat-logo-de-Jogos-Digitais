@@ -84,12 +84,12 @@ class Jogo(ABC):
     
     @classmethod
     def validar_duplicata(cls, titulo: str, plataforma: str, lista_jogos=None):
-        """Verifica se já existe um jogo com mesmo título e plataforma. Retorna True se é único."""
+        # atribui a lista de jogos, caso ela não esteja vazia, caso esteja usará a lista global
         lista = lista_jogos if lista_jogos is not None else cls._lista_jogos_global
         
         if lista is None:
             return True
-        
+        # Verifica se já existe um jogo com o mesmo título e plataforma
         for jogo in lista:
             if jogo.titulo.lower() == titulo.lower() and hasattr(jogo, 'plataforma') and jogo.plataforma.lower() == plataforma.lower():
                 return False
@@ -101,6 +101,34 @@ class Jogo(ABC):
     @abstractmethod
     def __repr__(self):
         pass
+
+    def __eq__(self, outro_jogo):
+        # Verifica se o outro_jogo é uma instância de Jogo
+        if not isinstance(outro_jogo, Jogo):
+            return False
+        
+        # Compara título (minúsculo)
+        mesmo_titulo = self.titulo.lower() == outro_jogo.titulo.lower()
+        
+        # Compara plataforma
+        # Truque: Como JogoPC tem .plataforma e JogoConsole tem .console,
+        # normalizamos a comparação:
+        minha_plat = getattr(self, 'plataforma', '').lower()
+        if hasattr(self, 'console'): 
+            minha_plat = self.console.lower()
+            
+        outra_plat = getattr(outro_jogo, 'plataforma', '').lower()
+        if hasattr(outro_jogo, 'console'):
+            outra_plat = outro_jogo.console.lower()
+
+        return mesmo_titulo and (minha_plat == outra_plat)
+
+    def __lt__(self, outro_jogo):
+        # Verifica se o outro_jogo é uma instância de Jogo
+        if not isinstance(outro_jogo, Jogo):
+            return NotImplemented
+        # Compara as horas jogadas de um jogo com o outro
+        return self.horasJogadas < outro_jogo.horasJogadas
 
     @property
     def titulo(self):
@@ -248,21 +276,27 @@ class JogoMobile(Jogo, MixinExportacao):
         return dados
 
 class JogoConsole(Jogo, MixinExportacao):
-    def __init__(self, titulo: str, nota: float, horasJogadas: int, genero: str, dataInicio: str, dataTermino: str, anoLancamento: int):
+    def __init__(self, titulo: str, nota: float, horasJogadas: int, genero: str, dataInicio: str, dataTermino: str, anoLancamento: int, console: str):
         super().__init__(titulo, nota, horasJogadas, genero, dataInicio, dataTermino, anoLancamento)
         self.__plataforma = "Console"
+        self.__console = console
 
     def __repr__(self):
         return f"Título: {self.titulo} Nota: {self.nota} Horas Jogadas: {self.horasJogadas} Status: {self.status} Gênero: {self.genero} Data Início: {self.dataInicio} Data Término: {self.dataTermino} Ano Lançamento: {self.anoLancamento}"
 
     def __str__(self):
-        return super().__str__() + f" | Plataforma: {self.__plataforma}"
+        return super().__str__() + f" | Console: {self.__console}"
 
     @property
     def plataforma(self):
         return self.__plataforma
     
+    @property
+    def console(self):
+        return self.__console
+    
     def exportar_dados(self):
         dados = super().exportar_dados()
         dados["plataforma"] = self.plataforma
+        dados["console"] = self.console
         return dados

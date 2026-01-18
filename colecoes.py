@@ -6,12 +6,10 @@ class Colecao:
         self.jogos = []
     
     def adicionar(self, jogo):
-        # Verifica se já existe EXATAMENTE o mesmo jogo (mesmo título e plataforma)
-        for j in self.jogos:
-            if j.titulo.lower() == jogo.titulo.lower() and \
-               j.plataforma.lower() == jogo.plataforma.lower():
-                print(f"⚠️ Já existe: {jogo.titulo} ({jogo.plataforma})")
-                return False
+        # Usa o __eq__ do jogo.py para verificar duplicata automaticamente.
+        if jogo in self.jogos:  
+            print(f"⚠️ Já existe: {jogo.titulo} ({jogo.plataforma})")
+            return False
         
         # Se percorreu tudo e não encontrou igual, adiciona
         self.jogos.append(jogo)

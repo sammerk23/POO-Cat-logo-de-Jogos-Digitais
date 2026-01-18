@@ -1,37 +1,11 @@
 {
     "Minha coleção": [
         {
-            "titulo": "Cyberpunk 2077",
-            "nota": 0,
-            "horasJogadas": 0,
-            "status": "não iniciado",
-            "genero": "RPG, Mundo aberto, Ação",
-            "dataInicio": "",
-            "dataTermino": "",
-            "anoLancamento": 2020,
-            "tipo_classe": "JogoPc",
-            "plataforma": "Computador"
-        },
-        {
-            "titulo": "Dying Light",
-            "nota": 0,
-            "horasJogadas": 0,
-            "status": "não iniciado",
-            "genero": "Zumbi, RPG, Ação, Mundo Aberto",
-            "dataInicio": "",
-            "dataTermino": "",
-            "anoLancamento": 2015,
-            "tipo_classe": "JogoPc",
-            "plataforma": "Computador"
-        }
-    ],
-    "Jogar em 2026": [
-        {
             "titulo": "Far cry 3",
-            "nota": 0,
-            "horasJogadas": 0,
-            "status": "não iniciado",
-            "genero": "Ação, Mundo aberto, tiro",
+            "nota": 9.5,
+            "horasJogadas": 12.0,
+            "status": "finalizado",
+            "genero": "Ação, Tiro, RPG, Mundo Aberto",
             "dataInicio": "",
             "dataTermino": "",
             "anoLancamento": 2012,
@@ -39,14 +13,52 @@
             "plataforma": "Computador"
         },
         {
-            "titulo": "far cry 4",
+            "titulo": "Far Cry 4",
             "nota": 0,
             "horasJogadas": 0,
             "status": "não iniciado",
-            "genero": "Mundo aberto, Ação, Tiro",
+            "genero": "Ação, Tiro, RPG, Mundo aberto",
             "dataInicio": "",
             "dataTermino": "",
-            "anoLancamento": 2014,
+            "anoLancamento": 2015,
+            "tipo_classe": "JogoPc",
+            "plataforma": "Computador"
+        },
+        {
+            "titulo": "Minecraft",
+            "nota": 0,
+            "horasJogadas": 0,
+            "status": "não iniciado",
+            "genero": "Mundo aberto, Sobrevivência, Sandbox",
+            "dataInicio": "",
+            "dataTermino": "",
+            "anoLancamento": 2011,
+            "tipo_classe": "JogoMobile",
+            "plataforma": "Mobile"
+        }
+    ],
+    "AC colection": [
+        {
+            "titulo": "Assassin's Creed IV Black Flag",
+            "nota": 0,
+            "horasJogadas": 0,
+            "status": "não iniciado",
+            "genero": "Ação, Mundo aberto, Stealth, Aventura",
+            "dataInicio": "",
+            "dataTermino": "",
+            "anoLancamento": 2013,
+            "tipo_classe": "JogoPc",
+            "plataforma": "Computador"
+        },
+        {
+            "titulo": "Assassin's Creed Rogue",
+            "nota": 0,
+            "horasJogadas": 0,
+            "status": "não iniciado",
+            "genero": "Ação, Mundo aberto, Stealth, Aventura",
+            "dataInicio": "",
+            "dataTermino": "",
+            "anoLancamento": 2015,
             "tipo_classe": "JogoPc",
             "plataforma": "Computador"
         }
